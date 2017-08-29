@@ -15,7 +15,7 @@ class TodoForm extends Component {
             <div>
                 <h1>Why don't you add something to your TODO list?</h1>
                 <form>
-                    <input onChange={(e)=> this.setState({ inputValue: e.target.value })} value={this.state.inputValue} placeholder="What's something you need to get done?"></input>
+                    <input onChange={(e)=> this.setState({ inputValue: e.target.value })} value={this.state.inputValue} placeholder="What needs doing?"></input>
                     <button onClick={(e)=> {
                         this.props.handleSubmit(e, this.state.inputValue)
                         this.setState({

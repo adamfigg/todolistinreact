@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './spinner_PNG52.png';
 import './App.css';
 import TodoForm from './components/TodoForm/TodoForm.js';
 import Tasks from './components/Tasks/Tasks.js';
@@ -61,7 +61,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2> Welcome to the Task List Manager</h2>
         </div>
-        <TodoForm handleSubmit={this.handleSubmit} testFunction={this.test} />
+        <TodoForm handleSubmit={this.handleSubmit} />
         <Tasks tasksToDisplay={this.state.tasksToComplete} handleCompleted={this.taskIveCompleted} handleDeleted={this.tooDiff} />
         <CompletedTasks tasksCompletedDisplay={this.state.tasksCompleted} />
       </div>
