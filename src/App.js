@@ -11,24 +11,45 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      tasksToComplete: ['thing 1', 'thing 2', 'thing 3'],
-      tasksCompleted: ['abc', 'def', 'ghi']
+      tasksToComplete: [],
+      tasksCompleted: []
     }
-    this.test = this.test.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  test(e, word) {
-    e.preventDefault(); 
-    alert(word);
+    this.taskIveCompleted = this.taskIveCompleted.bind(this);
+    this.tooDiff = this.tooDiff.bind(this);
   }
 
   handleSubmit(e, word) {
     e.preventDefault();
-    var arrCopy = [...this.state.tasksToComplete];
-    arrCopy.push(word)
+    if (word) {
+      var arrCopy = [...this.state.tasksToComplete];
+      arrCopy.push(word)
+
+      this.setState({
+        tasksToComplete: arrCopy
+      })
+    }
+  }
+
+  taskIveCompleted(task, i) {
+    var arrCopy = [...this.state.tasksCompleted];
+    arrCopy.push(task);
+
+    var arrTakeAway = [...this.state.tasksToComplete];
+    arrTakeAway.splice(i, 1);
+
     this.setState({
-      tasksToComplete: arrCopy
+      tasksCompleted: arrCopy,
+      tasksToComplete: arrTakeAway
+    })
+  }
+
+  tooDiff(task, i) {
+    var arrTakeAway = [...this.state.tasksToComplete];
+    arrTakeAway.splice(i, 1);
+
+    this.setState({
+      tasksToComplete: arrTakeAway
     })
   }
 
@@ -40,11 +61,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2> Welcome to the Task List Manager</h2>
         </div>
-        <TodoForm handleSubmit={this.handleSubmit} testFunction={this.test}/>
-        <Tasks tasksToDisplay={this.state.tasksToComplete} />
+        <TodoForm handleSubmit={this.handleSubmit} testFunction={this.test} />
+        <Tasks tasksToDisplay={this.state.tasksToComplete} handleCompleted={this.taskIveCompleted} handleDeleted={this.tooDiff} />
         <CompletedTasks tasksCompletedDisplay={this.state.tasksCompleted} />
       </div>
-        
+
     );
   }
 }

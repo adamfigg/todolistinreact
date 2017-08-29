@@ -11,7 +11,8 @@ class Tasks extends Component {
                     return (
                         <div className="TasksDisplay" key={i}>
                             <h2>{task}</h2>
-                            <button>task completed</button>
+                        <button onClick={()=> this.props.handleCompleted(task, i)}>task completed</button>
+                        <button onClick={()=> this.props.handleDeleted(task, i)}>too difficult</button>
                         </div>
                     )
                   })
